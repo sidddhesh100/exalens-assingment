@@ -1,8 +1,10 @@
 from typing import Union
 
 from fastapi import FastAPI
+from .settings import Settings
 
 app = FastAPI()
+setting = Settings()
 
 
 @app.get("/")
