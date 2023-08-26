@@ -1,10 +1,11 @@
 from typing import Union
 import uvicorn
 from fastapi import FastAPI
-from .settings import Settings
+import os
+# from .settings import Settings
 
 app = FastAPI()
-setting = Settings()
+# setting = Settings()
 
 database_url = os.environ.get("DATABASE_URL")
 debug_mode = os.environ.get("DEBUG")
