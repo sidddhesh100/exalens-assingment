@@ -13,7 +13,7 @@ services:
     container_name: redis
     restart: always
     volumes:
-      - redis_volume_data:/data
+      - redis_volume_data:/data:rw
     ports:
       - 6379:6379
     
@@ -25,5 +25,26 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
+
+  mqtt5:
+    image: eclipse-mosquitto
+    container_name: mqtt5
+    restart: always
+    ports:
+      - 1883:1883 #default MQTT port
+      # - 9001:9001 #default MQTT port for websockets
+    volumes:
+      - ./mqtt5/config:/mosquitto/config
+      # - ./mqtt5/config/mosquitto.conf:/mosquitto.conf     
+      - ./mqtt5/data:/mosquitto/data
+      - ./mqtt5/log:/mosquitto/log
+
+
 volumes:
   redis_volume_data:
+  config:
+  data:
+  log:
+
+networks:
+  default:

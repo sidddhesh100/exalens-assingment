@@ -1,16 +1,22 @@
 from typing import Union
 import uvicorn
 from fastapi import FastAPI
-import os
-# from .settings import Settings
+from paho.mqtt.client import mqtt
+from .settings import Settings
+import motor.motor_asyncio
+from redis import Redis
+
 
 app = FastAPI()
-# setting = Settings()
+setting = Settings()
 
-database_url = os.environ.get("DATABASE_URL")
-debug_mode = os.environ.get("DEBUG")
-secret_key = os.environ.get("SECRET_KEY")
+mqtt_client = mqtt.Client()
+mqtt_client.connect(setting.BROKER_ADDRESS, setting.BROKER_PORT)
 
+mongo_client = motor.motor_asyncio.AsyncIOMotorClient(Settings.MONGO_DB_URL)
+database = mongo_client.exalon
+
+redis = Redis(host='localhost', port=setting.REDIS_PORT, db=0)
 
 @app.get("/")
 def read_root():
