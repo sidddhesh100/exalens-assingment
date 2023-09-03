@@ -16,7 +16,7 @@ services:
       - redis_volume_data:/data:rw
     ports:
       - 6379:6379
-    
+
   mongo:
     image: mongo:latest
     restart: always
@@ -35,7 +35,7 @@ services:
       # - 9001:9001 #default MQTT port for websockets
     volumes:
       - ./mqtt5/config:/mosquitto/config
-      # - ./mqtt5/config/mosquitto.conf:/mosquitto.conf     
+      # - ./mqtt5/config/mosquitto.conf:/mosquitto.conf
       - ./mqtt5/data:/mosquitto/data
       - ./mqtt5/log:/mosquitto/log
 
