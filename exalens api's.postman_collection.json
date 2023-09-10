@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "fd27a511-6de9-4782-b628-a1e8b8bb1649",
+		"name": "exalens api's",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23622407"
+	},
+	"item": [
+		{
+			"name": "root endpoint",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get latest 10 readings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/sensor/latest-readings?sensor_id=sensor1&sensor_type=temperature",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"sensor",
+						"latest-readings"
+					],
+					"query": [
+						{
+							"key": "sensor_id",
+							"value": "sensor1"
+						},
+						{
+							"key": "sensor_type",
+							"value": "temperature"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get readings",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"temperature\",\n    \"sensor_id\": \"sensor1\",\n    \"sensor_start_range\": 10,\n    \"sensor_end_range\": 60\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/sensor/get_readings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"sensor",
+						"get_readings"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

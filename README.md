@@ -218,3 +218,11 @@ This endpoint allows you to retrieve the latest ten sensor readings for a specif
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Note
+
+Please use the Postman collection provided in this repository for testing the API endpoints. You can find the collection file at:
+
+`/exalens api's.postman_collection.json`
+
+Make sure to import the collection into your Postman workspace and configure the necessary environment variables for testing.
