@@ -11,7 +11,7 @@ This project simulates the behavior of sensors, monitors their readings, and pro
 - A Python MQTT client publishes simulated sensor readings to topics like `sensors/temperature` and `sensors/humidity`. The data is formatted as JSON payloads.
 
 ### MQTT Subscriber (Python MQTT Client)
-- Another Python MQTT client acts as a subscriber, receiving messages published by sensors. It stores the received messages in a MongoDB collection.
+- Another Python MQTT client acts as a subscriber, receiving messages published by sensors. It stores the received messages in a MongoDB collection and push the latesh 10 reading in redis.
 
 ### Data Storage (MongoDB)
 - A MongoDB instance is initiated using Docker to save the incoming MQTT messages. These messages include sensor ID, reading value, and timestamp.
@@ -21,7 +21,7 @@ This project simulates the behavior of sensors, monitors their readings, and pro
 
 ### FastAPI Endpoint
 - A FastAPI-based RESTful API provides the following endpoints:
-  - `GET /`: Root url
+  - `GET /`: Root api endpoint here I am creating some mimic reading and publish it to subsciber
   - `GET /sensor-readings`: Fetch sensor readings by specifying a start and end range.
   - `GET /latest-readings/{sensor_id}`: Retrieve the last ten sensor readings for a specific sensor.
 
@@ -69,7 +69,7 @@ The root endpoint of the API provides basic information about the available sens
   }
   ```
 
-This root endpoint allows you to check the available sensor ids and the api service is working
+This root endpoint will generate a random reading of temperature and humidity and publish those reading on this two topics such as `sensors/humidity/#` and `temperature/humidity/#` and will return the available sensor Id's in response.
 
 ### 2. Fetch Sensor Readings
 
