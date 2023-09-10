@@ -7,33 +7,31 @@ from fastapi import Response
 from sensor import app, mqtt, redis, database
 from sensor.router import sensor_route
 
-
+# include routers
 app.include_router(sensor_route)
 
 
 @app.get("/")
 def mimic_readings():
     sensor_ids = ["sensor1", "sensor2", "sensor3"]
-    try:
-        i = 0
-        while True:
-            for sensor_id in sensor_ids:
-                temperature_topic = f"sensors/temperature/{sensor_id}"
-                humidity_topic = f"sensors/humidity/{sensor_id}"
+    i = 0
+    while True:
+        for sensor_id in sensor_ids:
+            temperature_topic = f"sensors/temperature/{sensor_id}"
+            humidity_topic = f"sensors/humidity/{sensor_id}"
 
-                publish_sensor_reading(sensor_id, temperature_topic, "temperature")
-                publish_sensor_reading(sensor_id, humidity_topic, "humidity")
+            publish_sensor_reading(sensor_id, temperature_topic, "temperature")
+            publish_sensor_reading(sensor_id, humidity_topic, "humidity")
 
-                # time.sleep(5)  # Wait for 5 seconds before publishing again
-                i += 1
-                print(i)
-                if i == 25:
-                    break
+            # time.sleep(5)  # Wait for 5 seconds before publishing again
+            i += 1
+            print(i)
             if i == 25:
                 break
-    except KeyboardInterrupt:
-        print("Client stopped")
-    return Response(content=json.dumps({"status": True}), media_type="application/json")
+        if i == 25:
+            break
+
+    return Response(content=json.dumps({"status": True, "sensor_id": sensor_ids}), media_type="application/json")
 
 
 def publish_sensor_reading(sensor_id: str, topic: str, type: str) -> None:
@@ -91,5 +89,5 @@ def subscribe(client, mid, qos, properties):
     print("subscribed", client, mid, qos, properties)
 
 
-if __name__ == "__main__":
-    uvicorn.run("server.app:app", host="0.0.0.0", port=8000, reload=True)
+# if __name__ == "__main__":
+#     uvicorn.run("server.app:app", host="0.0.0.0", port=8000, reload=True)

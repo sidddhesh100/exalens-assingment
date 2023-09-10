@@ -7,15 +7,13 @@ from fastapi import FastAPI
 app = FastAPI()
 
 # mqtt connection
-mqtt_config = MQTTConfig(username="root", password="example")
+mqtt_config = MQTTConfig(host="mqtt5", port=1883)
 mqtt = FastMQTT(config=mqtt_config)
 mqtt.init_app(app)
 
 # mongo db connection
-mongo_client = motor.motor_asyncio.AsyncIOMotorClient("mongodb://root:example@localhost:27017")
+mongo_client = motor.motor_asyncio.AsyncIOMotorClient("mongodb://root:example@mongo:27017")
 database = mongo_client.exalon
 
 # redis connection
-redis = StrictRedis(host="localhost", port=6379)
-
-# include routers
+redis = StrictRedis(host="redis", port=6379)
