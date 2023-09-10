@@ -21,6 +21,7 @@ This project simulates the behavior of sensors, monitors their readings, and pro
 
 ### FastAPI Endpoint
 - A FastAPI-based RESTful API provides the following endpoints:
+  - `GET /`: Root url
   - `GET /sensor-readings`: Fetch sensor readings by specifying a start and end range.
   - `GET /latest-readings/{sensor_id}`: Retrieve the last ten sensor readings for a specific sensor.
 
