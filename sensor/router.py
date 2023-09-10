@@ -7,7 +7,7 @@ from .serializer import Payload
 sensor_route = APIRouter(prefix="/sensor")
 
 
-@sensor_route.get("/get_last_10_records")
+@sensor_route.get("/latest-readings")
 async def fetch_last_10_records(sensor_id: str, sensor_type: str) -> Response:
     """
     Fetch last 10 sensor readings from redis and return it in responose

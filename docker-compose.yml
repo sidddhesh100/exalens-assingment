@@ -13,8 +13,6 @@ services:
     image: redis:7.2.0
     container_name: redis
     restart: always
-    # volumes:
-    #   - redis_volume_data:/data:rw
     ports:
       - 6379:6379
 
@@ -35,17 +33,3 @@ services:
     ports:
       - 1883:1883 #default MQTT port
       - 9001:9001 #default MQTT port for websockets
-    # volumes:
-    #   - ./mqtt5/config:/mosquitto/config
-    #   - ./mqtt5/data:/mosquitto/data
-      # - ./mqtt5/log:/mosquitto/log
-
-
-# volumes:
-#   redis_volume_data:
-#   # config:
-#   # data:
-#   # log:
-
-# networks:
-#   default:
